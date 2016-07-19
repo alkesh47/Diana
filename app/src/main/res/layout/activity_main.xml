@@ -10,11 +10,16 @@
     tools:context="com.example.alkesh.expensemanager101.MainActivity">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="  +  "
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:text="+"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
         android:textSize="45dp"
         android:id="@+id/addbutton"
+        android:background="@drawable/shapechange"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="11dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
