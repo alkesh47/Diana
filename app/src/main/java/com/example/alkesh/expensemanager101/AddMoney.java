@@ -15,12 +15,6 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
     Button Save,Cancel;
     EditText expText;
 
-    /*int[] expense=new int[100];
-    int temp=900;
-    int c=0;
-    int sum=0;
-    String DBOnce;*/
-
     private SQLiteDatabase db;
 
     @Override
@@ -36,34 +30,13 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         Save = (Button)findViewById(R.id.savebutton);
         Save.setOnClickListener(this);
 
-
-        CreateDatabase();
-            /*Calculate();*/
-            /*send();*/
-        }
-
-
-    /*public void Calculate(){
-        temp=Integer.parseInt(String.valueOf(expText.getText()));
-    }*/
-
-   /* public void send(){
-        Intent i=new Intent(AddMoney.this,Overview.class);
-        String s=String.valueOf(temp);
-        i.putExtra("text",s);
-        startActivity(i);
-        finish();
-        Toast.makeText(AddMoney.this,"Your expense was saved "+temp,Toast.LENGTH_SHORT).show();
-    }*/
+    }
 
     @Override
     public void onClick(View view) {
 
         if(view== Save){
-
             insertIntoDatabase();
-            /*Calculate();*/
-            /*send();*/
         }
 
         if(view==Cancel){
@@ -73,16 +46,6 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         }
 
     }
-
-    protected void CreateDatabase(){
-        db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS money(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR);");
-    }
-
-    /*protected void createDatabase(){
-        db=openOrCreateDatabase("PersonDB", Context.MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS persons(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR,address VARCHAR);");
-    }*/
 
     protected void insertIntoDatabase(){
         String amount = expText.getText().toString().trim();
@@ -96,21 +59,6 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         db.execSQL(query);
         Toast.makeText(getApplicationContext(),"Expense Saved",Toast.LENGTH_LONG).show();
         finish();
-        /*send();*/
 
     }
-
-   /* protected void insertIntoDB(){
-        String name = editTextName.getText().toString().trim();
-        String add = editTextAdd.getText().toString().trim();
-        if(name.equals("") || add.equals("")){
-            Toast.makeText(getApplicationContext(),"Please fill all fields", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        String query = "INSERT INTO persons (name,address) VALUES('"+name+"', '"+add+"');";
-        db.execSQL(query);
-        Toast.makeText(getApplicationContext(),"Saved Successfully", Toast.LENGTH_LONG).show();
-    }*/
-
 }

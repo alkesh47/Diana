@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     TextView expense;
     int c=0;
     String DBonce="0";
+    private SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        CreateDatabase();
+    }
+
+    protected void CreateDatabase(){
+        db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS money(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR);");
     }
 
 
