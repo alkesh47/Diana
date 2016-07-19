@@ -41,16 +41,6 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View view) {
 
         if(view== Save){
-
-            /*if(a.equals("0")) {
-                CreateDatabase();
-                Toast.makeText(this,"Database Created",Toast.LENGTH_SHORT).show();
-            }
-
-            else{
-                a="1";
-            }*/
-
             insertIntoDatabase();
         }
 

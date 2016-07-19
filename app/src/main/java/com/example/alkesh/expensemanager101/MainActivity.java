@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         Add = (Button) findViewById(R.id.addbutton);
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         CreateDatabase();
+
     }
 
-    protected void CreateDatabase(){
+    public void CreateDatabase(){
         db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
         db.execSQL("CREATE TABLE IF NOT EXISTS money(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR);");
+        Toast.makeText(this,"Database Created",Toast.LENGTH_LONG).show();
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
