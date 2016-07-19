@@ -14,13 +14,17 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
     Button Save,Cancel;
     EditText expText;
-
+    String a;
     private SQLiteDatabase db;
+   /* Intent i=getIntent();
+    String a=i.getStringExtra("counter");*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_money);
+
+        OpenDatabase();
 
         expText=(EditText)findViewById(R.id.expense);
 
@@ -30,28 +34,43 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         Save = (Button)findViewById(R.id.savebutton);
         Save.setOnClickListener(this);
 
+
     }
 
     @Override
     public void onClick(View view) {
 
         if(view== Save){
+
+            /*if(a.equals("0")) {
+                CreateDatabase();
+                Toast.makeText(this,"Database Created",Toast.LENGTH_SHORT).show();
+            }
+
+            else{
+                a="1";
+            }*/
+
             insertIntoDatabase();
         }
 
         if(view==Cancel){
-            Intent intent =new Intent(AddMoney.this,MainActivity.class);
-            startActivity(intent);
             finish();
         }
 
     }
 
+
+    protected void OpenDatabase(){
+        db=openOrCreateDatabase("MoneyDB",Context.MODE_PRIVATE,null);
+    }
+
+
     protected void insertIntoDatabase(){
         String amount = expText.getText().toString().trim();
 
         if(amount.equals("")){
-            Toast.makeText(this,"Please enter your expense or press Cancel to go back",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Please enter your expense or press Cancel to go back",Toast.LENGTH_SHORT).show();
             return;
         }
 
