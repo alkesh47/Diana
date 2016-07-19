@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Button Add;
     TextView expense;
     int c=0;
+    String DBonce="0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
