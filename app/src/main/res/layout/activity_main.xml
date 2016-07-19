@@ -9,38 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.alkesh.expensemanager101.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="July"
-        android:textSize="35dp"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="100.21"
-        android:textSize="55dp"
-        android:id="@+id/TotalExpense"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="$"
-        android:textSize="55dp"
-        android:id="@+id/textView3"
-        android:layout_alignBottom="@+id/TotalExpense"
-        android:layout_toEndOf="@+id/TotalExpense" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
