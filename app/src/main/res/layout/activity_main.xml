@@ -9,44 +9,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.alkesh.expensemanager101.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="July"
-        android:textSize="35dp"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="100.21"
-        android:textSize="55dp"
-        android:id="@+id/TotalExpense"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="$"
-        android:textSize="55dp"
-        android:id="@+id/textView3"
-        android:layout_alignBottom="@+id/TotalExpense"
-        android:layout_toEndOf="@+id/TotalExpense" />
-
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="  +  "
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:text="+"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
         android:textSize="45dp"
         android:id="@+id/addbutton"
+        android:background="@drawable/shapechange"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="11dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 

@@ -156,7 +156,7 @@
                 android:inputType="date"
                 android:hint="Enter Date"
                 android:ems="10"
-                android:id="@+id/editText2"
+                android:id="@+id/dateEditText"
                 android:layout_column="2" />
         </TableRow>
 
@@ -181,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:ems="10"
-                android:id="@+id/editText3"
+                android:id="@+id/notesEditText"
                 android:layout_column="2" />
         </TableRow>
     </TableLayout>

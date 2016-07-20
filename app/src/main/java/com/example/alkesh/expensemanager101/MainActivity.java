@@ -1,6 +1,8 @@
 package com.example.alkesh.expensemanager101;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,10 +18,14 @@ public class MainActivity extends AppCompatActivity {
     Button Add;
     TextView expense;
     int c=0;
+    String DBonce="0";
+    private SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         Add = (Button) findViewById(R.id.addbutton);
@@ -31,8 +37,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        CreateDatabase();
+
     }
 
+    public void CreateDatabase(){
+        db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS money(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR ,date VARCHAR, notes VARCHAR);");
+        Toast.makeText(this,"Database Created",Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
