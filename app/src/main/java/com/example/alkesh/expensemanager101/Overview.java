@@ -1,6 +1,7 @@
 package com.example.alkesh.expensemanager101;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -8,17 +9,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Overview extends AppCompatActivity implements View.OnClickListener {
 
     String total;
-    TextView expense;
+    TextView expense,amount;
     Button Next,Previous,Main;
+    int temp;
 
     private SQLiteDatabase db;
     private static final String SELECT_SQL= "SELECT * FROM money";
     private Cursor c;
-    int sum=0;
+    static int sum=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +29,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
         OpenDatabase();
 
         expense = (TextView)findViewById(R.id.expensetext);
+        amount = (TextView)findViewById(R.id.amount);
 
         Next = (Button)findViewById(R.id.nextbutton);
         Previous = (Button)findViewById(R.id.previousbutton);
@@ -33,6 +37,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
 
         Next.setOnClickListener(this);
         Previous.setOnClickListener(this);
+        Main.setOnClickListener(this);
 
         c=db.rawQuery(SELECT_SQL,null);
         c.moveToLast();
@@ -62,8 +67,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
 
     protected void ShowRecords(){
         String exp=c.getString(1);
-        int temp=Integer.parseInt(exp);
-        sum=sum+temp;
+        temp=Integer.parseInt(exp);
         expense.setText(exp);
     }
 
@@ -83,4 +87,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
         ShowRecords();
     }
 
+    protected void SetTotal(){
+        amount.setText(sum);
+    }
 }
