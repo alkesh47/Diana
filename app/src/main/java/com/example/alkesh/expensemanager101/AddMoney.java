@@ -13,8 +13,7 @@ import android.widget.Toast;
 public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
     Button Save,Cancel;
-    EditText expText;
-    String a;
+    EditText expText,Date,Notes;
     private SQLiteDatabase db;
 
     @Override
@@ -24,6 +23,9 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
         OpenDatabase();
 
+
+        Date=(EditText)findViewById(R.id.dateEditText);
+        Notes=(EditText)findViewById(R.id.notesEditText);
         expText=(EditText)findViewById(R.id.expense);
 
         Cancel=(Button)findViewById(R.id.cancelbutton);
@@ -59,15 +61,17 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
     protected void insertIntoDatabase(){
         String amount = expText.getText().toString().trim();
+        String date=Date.getText().toString().trim();
+        String notes=Notes.getText().toString().trim();
 
-        if(amount.equals("")){
-            Toast.makeText(this,"Please enter your expense or press Cancel to go back",Toast.LENGTH_SHORT).show();
+        if(amount.equals("") || date.equals("")){
+            Toast.makeText(this,"Please enter the necessary fields or press Cancel to go back",Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String query="INSERT INTO money (name) VALUES('"+amount+"');";
+        String query="INSERT INTO money (name,date,notes) VALUES('"+amount+"' , '"+date+"' , '"+notes+"');";
         db.execSQL(query);
-        Toast.makeText(getApplicationContext(),"Expense Saved",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Expense details Saved",Toast.LENGTH_LONG).show();
 
     }
 }
