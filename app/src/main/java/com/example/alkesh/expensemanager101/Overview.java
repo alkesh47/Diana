@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class Overview extends AppCompatActivity implements View.OnClickListener {
 
-    TextView expense,amount;
+    TextView expense,amount,Notes,Date;
     Button Next,Previous,Main;
 
     private SQLiteDatabase db;
@@ -28,6 +28,8 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
 
         expense = (TextView)findViewById(R.id.expensetext);
         amount = (TextView)findViewById(R.id.amounttext);
+        Notes = (TextView)findViewById(R.id.notesTextView);
+        Date = (TextView)findViewById(R.id.dateTextView);
 
         Next = (Button)findViewById(R.id.nextbutton);
         Previous = (Button)findViewById(R.id.previousbutton);
@@ -67,6 +69,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
     protected void ShowRecords(){
         String exp=c.getString(1);
         expense.setText(exp);
+        SetDateAndNotes();
     }
 
     protected void Next(){
@@ -88,5 +91,10 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
     protected void Calculate(){
         sum+=Integer.parseInt(c.getString(1));
         amount.setText(String.valueOf(sum));
+    }
+
+    protected  void SetDateAndNotes(){
+        Date.setText(String.valueOf(c.getString(2)));
+        Notes.setText(c.getString(3));
     }
 }

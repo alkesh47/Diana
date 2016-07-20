@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void CreateDatabase(){
         db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS money(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS money(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR ,date VARCHAR, notes VARCHAR);");
         Toast.makeText(this,"Database Created",Toast.LENGTH_LONG).show();
     }
 
