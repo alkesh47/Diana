@@ -18,7 +18,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
     private SQLiteDatabase db;
     private static final String SELECT_SQL= "SELECT * FROM money";
     private Cursor c;
-
+    int sum=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
         Previous.setOnClickListener(this);
 
         c=db.rawQuery(SELECT_SQL,null);
-        c.moveToNext();
+        c.moveToLast();
         ShowRecords();
     }
 
@@ -62,6 +62,8 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
 
     protected void ShowRecords(){
         String exp=c.getString(1);
+        int temp=Integer.parseInt(exp);
+        sum=sum+temp;
         expense.setText(exp);
     }
 

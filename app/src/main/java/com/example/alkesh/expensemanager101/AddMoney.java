@@ -40,6 +40,9 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
         if(view== Save){
             insertIntoDatabase();
+            Intent intent= new Intent(AddMoney.this,Overview.class);
+            startActivity(intent);
+            finish();
         }
 
         if(view==Cancel){
@@ -65,7 +68,6 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         String query="INSERT INTO money (name) VALUES('"+amount+"');";
         db.execSQL(query);
         Toast.makeText(getApplicationContext(),"Expense Saved",Toast.LENGTH_LONG).show();
-        finish();
 
     }
 }
