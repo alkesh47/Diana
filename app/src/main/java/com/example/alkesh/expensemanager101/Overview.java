@@ -16,9 +16,6 @@ public class Overview extends AppCompatActivity {
 
         expense=(TextView)findViewById(R.id.expenseTV);
 
-        Intent i=getIntent();
-        total=i.getStringExtra("text");
-
         expense.setText(total);
 
     }

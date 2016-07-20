@@ -16,8 +16,6 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
     EditText expText;
     String a;
     private SQLiteDatabase db;
-   /* Intent i=getIntent();
-    String a=i.getStringExtra("counter");*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
