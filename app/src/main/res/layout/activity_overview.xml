@@ -49,7 +49,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Main Page"
+        android:text="Exit"
         android:id="@+id/mainpagebutton"
         android:layout_alignBottom="@+id/nextbutton"
         android:layout_centerHorizontal="true" />
@@ -71,5 +71,36 @@
         android:id="@+id/amounttext"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Notes"
+        android:textSize="20dp"
+        android:id="@+id/textView3"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Spend on Groceries"
+        android:id="@+id/notesTextView"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="12 June 2016"
+        android:id="@+id/dateTextView"
+        android:layout_marginBottom="29dp"
+        android:layout_above="@+id/nextbutton"
+        android:layout_toEndOf="@+id/expensetext"
+        android:layout_marginStart="19dp" />
 
 </RelativeLayout>
