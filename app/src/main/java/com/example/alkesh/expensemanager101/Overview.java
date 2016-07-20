@@ -13,10 +13,8 @@ import android.widget.Toast;
 
 public class Overview extends AppCompatActivity implements View.OnClickListener {
 
-    String total;
     TextView expense,amount;
     Button Next,Previous,Main;
-    int temp;
 
     private SQLiteDatabase db;
     private static final String SELECT_SQL= "SELECT * FROM money";
@@ -29,7 +27,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
         OpenDatabase();
 
         expense = (TextView)findViewById(R.id.expensetext);
-        amount = (TextView)findViewById(R.id.amount);
+        amount = (TextView)findViewById(R.id.amounttext);
 
         Next = (Button)findViewById(R.id.nextbutton);
         Previous = (Button)findViewById(R.id.previousbutton);
@@ -42,6 +40,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
         c=db.rawQuery(SELECT_SQL,null);
         c.moveToLast();
         ShowRecords();
+        Calculate();
     }
 
     protected void OpenDatabase(){
@@ -67,7 +66,6 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
 
     protected void ShowRecords(){
         String exp=c.getString(1);
-        temp=Integer.parseInt(exp);
         expense.setText(exp);
     }
 
@@ -87,7 +85,8 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
         ShowRecords();
     }
 
-    protected void SetTotal(){
-        amount.setText(sum);
+    protected void Calculate(){
+        sum+=Integer.parseInt(c.getString(1));
+        amount.setText(String.valueOf(sum));
     }
 }
