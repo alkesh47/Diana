@@ -70,7 +70,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
+            android:background="#00FF00"
             android:text="Food and Drinks"
             android:textSize="20dp"
             android:layout_marginBottom="8dp"
@@ -83,7 +83,7 @@
             android:layout_marginStart="8dp"
             android:textSize="20dp"
             android:layout_marginBottom="8dp"
-            android:background="@android:color/holo_blue_dark"
+            android:background="#FFFF00"
             android:text="Movies"
             android:id="@+id/radioButton2" />
 
@@ -94,7 +94,7 @@
             android:layout_marginStart="8dp"
             android:textSize="20dp"
             android:layout_marginBottom="8dp"
-            android:background="@android:color/holo_purple"
+            android:background="#00FFFF"
             android:text="Transportation"
             android:id="@+id/radioButton3" />
 
@@ -105,7 +105,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:textSize="20dp"
-            android:background="@android:color/holo_red_light"
+            android:background="@android:color/holo_blue_light"
             android:text="Leisure"
             android:id="@+id/radioButton4" />
 
@@ -116,7 +116,7 @@
             android:layout_marginStart="8dp"
             android:textSize="20dp"
             android:text="Other"
-            android:background="#EEFFAA"
+            android:background="#BBBBBB"
             android:layout_marginBottom="8dp"
             android:id="@+id/radioButton5" />
     </RadioGroup>
@@ -133,60 +133,45 @@
         android:layout_below="@+id/radioGroup"
         android:layout_alignParentStart="true" />
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textView5"
-        android:layout_alignParentStart="true">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_below="@id/textView5"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Date"
+        android:id="@+id/datePickerTextView" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_below="@id/datePickerTextView"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Notes"
+        android:id="@+id/textView7" />
 
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Date"
-                android:textSize="20dp"
-                android:id="@+id/textView6"
-                android:layout_column="0" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:hint="Pick Date"
+        android:id="@+id/dateEditText"
+        android:layout_above="@+id/notesEditText"
+        android:layout_toEndOf="@+id/textView7"
+        android:layout_marginStart="21dp" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="date"
-                android:ems="10"
-                android:id="@+id/dateEditText"
-                android:layout_column="2" />
-
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Notes"
-                android:textSize="20dp"
-                android:layout_marginEnd="20dp"
-                android:id="@+id/textView7"
-                android:layout_column="0" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/notesEditText"
-                android:layout_column="2" />
-        </TableRow>
-    </TableLayout>
-
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notesEditText"
+        android:layout_below="@+id/datePickerTextView"
+        android:layout_alignStart="@+id/dateEditText"
+        android:layout_alignEnd="@+id/radioGroup" />
 
 
 </RelativeLayout>

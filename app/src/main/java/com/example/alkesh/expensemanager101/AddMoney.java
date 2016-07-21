@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -23,7 +24,8 @@ import java.util.Locale;
 public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
     Button Save,Cancel;
-    EditText expText,Notes,Date;
+    EditText expText,Notes;
+    TextView Date;
 
     private SQLiteDatabase db;
 
@@ -35,7 +37,7 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_money);
 
-        Date=(EditText)findViewById(R.id.dateEditText);
+        Date=(TextView)findViewById(R.id.dateEditText);
         Notes=(EditText)findViewById(R.id.notesEditText);
         expText=(EditText)findViewById(R.id.expense);
 
@@ -56,7 +58,7 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if(motionEvent.getAction()==MotionEvent.ACTION_DOWN){
-                    new DatePickerDialog(AddMoney.this, (DatePickerDialog.OnDateSetListener) datePickerDialog,myCalendar.get(Calendar.YEAR),
+                    new DatePickerDialog(AddMoney.this, datePickerDialog,myCalendar.get(Calendar.YEAR),
                             myCalendar.get(Calendar.MONTH),
                             myCalendar.get(Calendar.DAY_OF_MONTH)).show();
                 }
@@ -78,7 +80,7 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
     @TargetApi(Build.VERSION_CODES.N)
     private void updateLabel(){
-        String myFormat = "dd-MM-yyyy";
+        String myFormat = "dd-MM-YYYY";
 
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat(myFormat,Locale.US);
         Date.setText(String.valueOf(simpleDateFormat.format(myCalendar.getTime())));
