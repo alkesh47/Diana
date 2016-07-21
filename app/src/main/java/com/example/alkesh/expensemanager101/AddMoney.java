@@ -1,19 +1,30 @@
 package com.example.alkesh.expensemanager101;
 
+import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
     Button Save,Cancel;
-    EditText expText,Date,Notes;
+    EditText expText,Notes,Date;
+
     private SQLiteDatabase db;
 
     @Override
@@ -34,8 +45,8 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         Save = (Button)findViewById(R.id.savebutton);
         Save.setOnClickListener(this);
 
-
     }
+
 
     @Override
     public void onClick(View view) {
@@ -50,7 +61,6 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         if(view==Cancel){
             finish();
         }
-
     }
 
 
@@ -74,4 +84,8 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         Toast.makeText(getApplicationContext(),"Expense details Saved",Toast.LENGTH_LONG).show();
 
     }
+
 }
+
+
+
