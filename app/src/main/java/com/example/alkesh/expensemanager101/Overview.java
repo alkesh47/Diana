@@ -13,19 +13,22 @@ import android.widget.Toast;
 
 public class Overview extends AppCompatActivity implements View.OnClickListener {
 
-    TextView expense,amount,Notes,Date;
+    TextView expense,amount,Notes,Date,Month;
     Button Next,Previous,Main;
 
     private SQLiteDatabase db;
     private static final String SELECT_SQL= "SELECT * FROM money";
     private Cursor c;
     static int sum=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
+
         OpenDatabase();
 
+        Month=(TextView)findViewById(R.id.monthsetTextView);
         expense = (TextView)findViewById(R.id.expensetext);
         amount = (TextView)findViewById(R.id.amounttext);
         Notes = (TextView)findViewById(R.id.notesTextView);
@@ -66,10 +69,52 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    protected void ShowRecords(){
-        String exp=c.getString(1);
-        expense.setText(exp);
-        SetDateAndNotes();
+    protected void ShowRecords() {
+        String exp = c.getString(1);
+        String mon = c.getString(4);
+
+        String tmp = "";
+        switch (mon) {
+            case "01":
+                tmp = "January";
+                break;
+            case "02":
+                tmp = "February";
+                break;
+            case "03":
+                tmp = "March";
+                break;
+            case "04":
+                tmp = "April";
+                break;
+            case "05":
+                tmp = "May";
+                break;
+            case "06":
+                tmp = "June";
+                break;
+            case "07":
+                tmp = "July";
+                break;
+            case "08":
+                tmp = "August";
+                break;
+            case "09":
+                tmp = "September";
+                break;
+            case "10":
+                tmp = "October";
+                break;
+            case "11":
+                tmp = "November";
+                break;
+            case "12":
+                tmp = "December";
+                break;
+        }
+            Month.setText(tmp);
+            expense.setText(exp);
+            SetDateAndNotes();
     }
 
     protected void Next(){
@@ -97,4 +142,5 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
         Date.setText(String.valueOf(c.getString(2)));
         Notes.setText(c.getString(3));
     }
+
 }

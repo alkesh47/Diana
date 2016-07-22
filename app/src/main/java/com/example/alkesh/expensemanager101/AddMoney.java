@@ -38,6 +38,7 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_add_money);
 
         Date=(TextView)findViewById(R.id.dateEditText);
+
         Notes=(EditText)findViewById(R.id.notesEditText);
         expText=(EditText)findViewById(R.id.expense);
 
@@ -81,9 +82,9 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
     @TargetApi(Build.VERSION_CODES.N)
     private void updateLabel(){
         String myFormat = "dd-MM-YYYY";
-
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat(myFormat,Locale.US);
         Date.setText(String.valueOf(simpleDateFormat.format(myCalendar.getTime())));
+
     }
 
 
@@ -112,15 +113,18 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         String amount = expText.getText().toString().trim();
         String date=Date.getText().toString().trim();
         String notes=Notes.getText().toString().trim();
+        String tmp= Date.getText().toString().trim();
+        String month = tmp.substring(3,5).toString();
+
 
         if(amount.equals("") || date.equals("")){
             Toast.makeText(this,"Please enter the necessary fields or press Cancel to go back",Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String query="INSERT INTO money (name,date,notes) VALUES('"+amount+"' , '"+date+"' , '"+notes+"');";
+        String query="INSERT INTO money (name,date,notes,months) VALUES('"+amount+"' , '"+date+"' , '"+notes+"' , '"+month+"');";
         db.execSQL(query);
-        Toast.makeText(getApplicationContext(),"Expense details Saved",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"Expense details Saved",Toast.LENGTH_LONG).show();
 
     }
 
