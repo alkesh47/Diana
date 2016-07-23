@@ -51,8 +51,8 @@
         android:layout_height="wrap_content"
         android:text="Exit"
         android:id="@+id/mainpagebutton"
-        android:layout_alignBottom="@+id/nextbutton"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/previousbutton"
+        android:layout_toEndOf="@+id/previousbutton" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -102,5 +102,13 @@
         android:layout_marginBottom="19dp"
         android:layout_above="@+id/nextbutton"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chart"
+        android:id="@+id/viewChartbutton"
+        android:layout_alignTop="@+id/nextbutton"
+        android:layout_toStartOf="@+id/dateTextView" />
 
 </RelativeLayout>

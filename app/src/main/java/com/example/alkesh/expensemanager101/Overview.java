@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class Overview extends AppCompatActivity implements View.OnClickListener {
 
     TextView expense,amount,Notes,Date,Month;
-    Button Next,Previous,Main;
+    Button Next,Previous,Main, ViewChart;
 
     private SQLiteDatabase db,db2;
     private static final String SELECT_SQL= "SELECT * FROM money";
@@ -40,10 +40,12 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
         Next = (Button)findViewById(R.id.nextbutton);
         Previous = (Button)findViewById(R.id.previousbutton);
         Main = (Button)findViewById(R.id.mainpagebutton);
+        ViewChart = (Button)findViewById(R.id.viewChartbutton);
 
         Next.setOnClickListener(this);
         Previous.setOnClickListener(this);
         Main.setOnClickListener(this);
+        ViewChart.setOnClickListener(this);
 
         c=db.rawQuery(SELECT_SQL,null);
         c2=db2.rawQuery(SELECT_SQL2,null);
@@ -74,6 +76,11 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
 
         if (view == Main){
             finish();
+        }
+
+        if (view == ViewChart){
+            Intent intent = new Intent(Overview.this,Distribution.class);
+            startActivity(intent);
         }
 
     }
