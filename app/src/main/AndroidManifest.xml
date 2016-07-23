@@ -18,7 +18,8 @@
         <activity android:name=".AddMoney" />
         <activity android:name=".Overview" />
         <activity android:name=".Budget" />
-        <activity android:name=".Distribution"></activity>
+        <activity android:name=".Distribution" />
+        <activity android:name=".DBOverview"></activity>
     </application>
 
 </manifest>
