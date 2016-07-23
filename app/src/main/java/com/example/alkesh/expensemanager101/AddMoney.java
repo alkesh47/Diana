@@ -2,6 +2,7 @@ package com.example.alkesh.expensemanager101;
 
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,8 +27,9 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
     Button Save,Cancel;
     EditText expText,Notes;
     TextView Date;
+    int id;
 
-    private SQLiteDatabase db;
+    private SQLiteDatabase db,db2;
 
     Calendar myCalendar = Calendar.getInstance();
 
@@ -69,7 +71,7 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
 
         OpenDatabase();
-
+        OpenDatabase2();
 
         Cancel=(Button)findViewById(R.id.cancelbutton);
         Cancel.setOnClickListener(this);
@@ -108,6 +110,10 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         db=openOrCreateDatabase("MoneyDB",Context.MODE_PRIVATE,null);
     }
 
+    protected void OpenDatabase2(){
+        db2=openOrCreateDatabase("MonthsTotalDB",Context.MODE_PRIVATE,null);
+    }
+
 
     protected void insertIntoDatabase(){
         String amount = expText.getText().toString().trim();
@@ -115,6 +121,7 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         String notes=Notes.getText().toString().trim();
         String tmp= Date.getText().toString().trim();
         String month = tmp.substring(3,5).toString();
+        int tmp1 = Integer.parseInt(month);
 
 
         if(amount.equals("") || date.equals("")){
@@ -124,8 +131,60 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
         String query="INSERT INTO money (name,date,notes,months) VALUES('"+amount+"' , '"+date+"' , '"+notes+"' , '"+month+"');";
         db.execSQL(query);
-        //Toast.makeText(getApplicationContext(),"Expense details Saved",Toast.LENGTH_LONG).show();
 
+        ContentValues contentValues=new ContentValues();
+        AddMoney k = new AddMoney();
+        id=k.FindMonthString(tmp1);
+        int tmp2=Integer.parseInt(amount);
+
+        String strFilter = "id=" + id;
+        contentValues.put("total", tmp2);
+        db2.update("monthtotal", contentValues, strFilter, null);
+
+        Toast.makeText(getApplicationContext(),"Expense details Saved",Toast.LENGTH_LONG).show();
+    }
+
+    protected int FindMonthString(int tmp1){
+        int id1=0;
+        switch (tmp1){
+            case 1:
+                id1 = 1;
+                break;
+            case 2:
+                id1 = 2;
+                break;
+            case 3:
+                id1 = 3;
+                break;
+            case 4:
+                id1 = 4;
+                break;
+            case 5:
+                id1 = 5;
+                break;
+            case 6:
+                id1 = 6;
+                break;
+            case 7:
+                id1 = 7;
+                break;
+            case 8:
+                id1 = 8;
+                break;
+            case 9:
+                id1 = 9;
+                break;
+            case 10:
+                id1 = 10;
+                break;
+            case 11:
+                id1 = 11;
+                break;
+            case 12:
+                id1 = 12;
+                break;
+        }
+        return id1;
     }
 
 }

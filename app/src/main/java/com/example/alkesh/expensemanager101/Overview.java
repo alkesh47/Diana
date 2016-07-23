@@ -1,5 +1,6 @@
 package com.example.alkesh.expensemanager101;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -51,6 +52,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
     protected void OpenDatabase(){
         db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
     }
+
 
     @Override
     public void onClick(View view) {
