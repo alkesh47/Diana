@@ -79,7 +79,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
         }
 
         if (view == ViewChart){
-            Intent intent = new Intent(Overview.this,Distribution.class);
+            Intent intent = new Intent(Overview.this,TotalSum.class);
             startActivity(intent);
         }
 
