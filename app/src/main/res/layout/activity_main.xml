@@ -23,4 +23,31 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Distribution"
+        android:id="@+id/distributionbutton"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Overview"
+        android:id="@+id/overviewbutton"
+        android:layout_above="@+id/totalbutton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="61dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Expenses"
+        android:id="@+id/totalbutton"
+        android:layout_marginBottom="49dp"
+        android:layout_above="@+id/addbutton"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

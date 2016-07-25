@@ -8,91 +8,62 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
 public class Distribution extends AppCompatActivity {
 
     SQLiteDatabase db;
-    Cursor c1;
+    Cursor c1,c2,c3,c4;
+    String mname="01";
+    int c=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_distribution);
 
         db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
-        //Cursor cursor=getCursor();
-        getSum();
-        /*c2=db.rawQuery("SELECT * FROM monthtotal where id="+2,null);
-        c3=db.rawQuery("SELECT * FROM monthtotal where id="+3,null);
-        c4=db.rawQuery("SELECT * FROM monthtotal where id="+4,null);
-        c5=db.rawQuery("SELECT * FROM monthtotal where id="+5,null);
-        c6=db.rawQuery("SELECT * FROM monthtotal where id="+6,null);
-*/
 
-        //DisplayChart();
+        Toast.makeText(this,"Rotate your Device to get a better and more accurate view of the Charts",Toast.LENGTH_LONG).show();
+        DisplayChart();
     }
 
-    protected void getSum(){
-        int tmp = 0;
-        int amount=0;
-        Cursor cursor = db.rawQuery("SELECT SUM(name) FROM money WHERE months="+2, null);
-
-        if(cursor!=null && cursor.moveToFirst()){
-            try{
-                amount = Integer.parseInt(cursor.getString(0));
-            }catch (Exception e){};
-
-            }
-
-        Toast.makeText(this, amount,Toast.LENGTH_SHORT);
-
-        /*if (cursor.moveToFirst())
-        {
-            tmp += Integer.parseInt(cursor.getString(0));
-        } while (cursor.moveToNext());*/
-    }
-
-    protected Cursor getCursor(){
-
-        String query="SELECT * FROM money WHERE months=" +5;
-        c1=db.rawQuery(query,null);
-
-        if(c1!=null){
-            c1.moveToFirst();
-            c1=db.rawQuery(query,null);
-        }
-        return c1;
-    }
-
-    /*protected void DisplayChart(){
+    protected void DisplayChart(){
         ArrayList<BarEntry> entries=new ArrayList<>();
-        String tmp="";
+        String month;
 
-        if(c1!=null && c1.moveToFirst()){
-            tmp=c1.getString(1);
-            Toast.makeText(this,tmp,Toast.LENGTH_SHORT).show();
-            c1.close();
+        for(int x=1;x<13;x++){
+
+            if(x<10)
+                month=getMonthSum(String.valueOf("0"+x));
+
+            else
+                month=getMonthSum(String.valueOf(x));
+
+            entries.add(new BarEntry(Float.parseFloat(month),c++));
+
         }
-        entries.add(new BarEntry(Float.parseFloat(tmp),0));
-        entries.add(new BarEntry(Float.parseFloat(tmp), 1));
-        entries.add(new BarEntry(Float.parseFloat(tmp), 2));
-        entries.add(new BarEntry(Float.parseFloat(tmp), 3));
-        entries.add(new BarEntry(Float.parseFloat(tmp), 4));
-        entries.add(new BarEntry(Float.parseFloat(tmp), 5));
 
-        BarDataSet dataset = new BarDataSet(entries, "# of Calls");
+        BarDataSet dataset = new BarDataSet(entries, "Total Expenditure in Months");
 
         ArrayList<String> labels = new ArrayList<String>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
+        labels.add("Jan");
+        labels.add("Feb");
+        labels.add("Mar");
+        labels.add("Apr");
         labels.add("May");
-        labels.add("June");
+        labels.add("Jun");
+        labels.add("Jul");
+        labels.add("Aug");
+        labels.add("Sep");
+        labels.add("Oct");
+        labels.add("Nov");
+        labels.add("Dec");
 
         BarChart chart = new BarChart(this);
         setContentView(chart);
@@ -101,5 +72,18 @@ public class Distribution extends AppCompatActivity {
         chart.setData(data);
 
         chart.setDescription("# of times Alice called Bob");       // Chart Description
-    }*/
+
+        dataset.setColors(ColorTemplate.JOYFUL_COLORS);
+        chart.animateY(5000);
+
+    }
+
+    protected String getMonthSum(String mname){
+        String Mname=mname;
+        c4=db.rawQuery("SELECT SUM(name) FROM money WHERE months='"+Mname+"'",null);
+        if(c4.moveToFirst()){
+            return String.valueOf(c4.getInt(0));
+        }
+        return "0";
+    }
 }

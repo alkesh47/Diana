@@ -17,10 +17,10 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
     TextView expense,amount,Notes,Date,Month;
     Button Next,Previous,Main, ViewChart;
 
-    private SQLiteDatabase db,db2;
+    private SQLiteDatabase db;
     private static final String SELECT_SQL= "SELECT * FROM money";
-    private static final String SELECT_SQL2= "SELECT * FROM monthtotal";
-    private Cursor c,c2;
+    //private static final String SELECT_SQL2= "SELECT * FROM monthtotal";
+    private Cursor c;
     static int sum=0;
 
     @Override
@@ -29,7 +29,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_overview);
 
         OpenDatabase();
-        OpenDatabase2();
+       // OpenDatabase2();
 
         Month=(TextView)findViewById(R.id.monthsetTextView);
         expense = (TextView)findViewById(R.id.expensetext);
@@ -48,7 +48,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
         ViewChart.setOnClickListener(this);
 
         c=db.rawQuery(SELECT_SQL,null);
-        c2=db2.rawQuery(SELECT_SQL2,null);
+        //c2=db2.rawQuery(SELECT_SQL2,null);
 
         c.moveToLast();
         ShowRecords();
@@ -58,9 +58,9 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
     protected void OpenDatabase(){
         db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
     }
-    protected void OpenDatabase2(){
+    /*protected void OpenDatabase2(){
         db2=openOrCreateDatabase("MonthsTotalDB", Context.MODE_PRIVATE,null);
-    }
+    }*/
 
 
     @Override
@@ -129,11 +129,11 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
                 break;
         }
 
-            String strFilter = "id=" + mon;
+            /*String strFilter = "id=" + mon;
             ContentValues contentValues=new ContentValues();
             contentValues.put("total",c.getString(1));
             db2.update("monthtotal",contentValues,strFilter,null);
-            Toast.makeText(this,"Second DB updated",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Second DB updated",Toast.LENGTH_SHORT).show();*/
 
             Month.setText(tmp);
             expense.setText(exp);

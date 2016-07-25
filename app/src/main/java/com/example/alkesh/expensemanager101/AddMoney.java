@@ -29,7 +29,7 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
     TextView Date;
     int id;
 
-    private SQLiteDatabase db,db2;
+    private SQLiteDatabase db;
 
     Calendar myCalendar = Calendar.getInstance();
 
@@ -71,7 +71,6 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
 
         OpenDatabase();
-        OpenDatabase2();
 
         Cancel=(Button)findViewById(R.id.cancelbutton);
         Cancel.setOnClickListener(this);
@@ -110,10 +109,6 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         db=openOrCreateDatabase("MoneyDB",Context.MODE_PRIVATE,null);
     }
 
-    protected void OpenDatabase2(){
-        db2=openOrCreateDatabase("MonthsTotalDB",Context.MODE_PRIVATE,null);
-    }
-
 
     protected void insertIntoDatabase(){
         String amount = expText.getText().toString().trim();
@@ -133,19 +128,19 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         String query="INSERT INTO money (name,date,notes,months) VALUES('"+amount+"' , '"+date+"' , '"+notes+"' , '"+month+"');";
         db.execSQL(query);
 
-        ContentValues contentValues=new ContentValues();
+        /*ContentValues contentValues=new ContentValues();
         AddMoney k = new AddMoney();
         id=k.FindMonthString(tmp1);
         int tmp2=Integer.parseInt(amount);
 
         String strFilter = "id=" + id;
         contentValues.put("total", tmp2);
-        db2.update("monthtotal", contentValues, strFilter, null);
+        db2.update("monthtotal", contentValues, strFilter, null);*/
 
         Toast.makeText(getApplicationContext(),"Expense details Saved",Toast.LENGTH_LONG).show();
     }
 
-    protected int FindMonthString(int tmp1){
+    /*protected int FindMonthString(int tmp1){
         int id1=0;
         switch (tmp1){
             case 1:
@@ -186,7 +181,7 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
                 break;
         }
         return id1;
-    }
+    }*/
 
 }
 

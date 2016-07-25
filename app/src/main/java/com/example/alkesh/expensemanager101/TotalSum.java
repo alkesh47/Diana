@@ -22,10 +22,6 @@ public class TotalSum extends AppCompatActivity {
         TotalSumDisplay=(TextView)findViewById(R.id.Total);
         AprilDisp=(TextView)findViewById(R.id.AprilTotal);
 
-        db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
-        c=db.rawQuery("SELECT SUM(name) FROM money",null);
-
-
         String i=getSum();
         String i2=getAprilSum();
 
@@ -36,6 +32,8 @@ public class TotalSum extends AppCompatActivity {
     }
 
     protected String getSum(){
+        db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
+        c=db.rawQuery("SELECT SUM(name) FROM money",null);
         if(c.moveToFirst()){
             return String.valueOf(c.getInt(0));
         }

@@ -14,10 +14,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button Add;
-    private SQLiteDatabase db,db2,db3;
+    Button Add,Total,Dist,Main;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         Add = (Button) findViewById(R.id.addbutton);
+        Total = (Button) findViewById(R.id.totalbutton);
+        Dist = (Button) findViewById(R.id.distributionbutton);
+        Main = (Button) findViewById(R.id.overviewbutton);
+
+        Total.setOnClickListener(this);
+        Dist.setOnClickListener(this);
+        Main.setOnClickListener(this);
+
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,37 +44,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         CreateDatabase();
-        insertIntoDatabase();
 
     }
 
     public void CreateDatabase(){
         db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
-        db2=openOrCreateDatabase("MonthsTotalDB", Context.MODE_PRIVATE,null);
-        db2.execSQL("CREATE TABLE IF NOT EXISTS monthtotal(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, monthName VARCHAR ,total VARCHAR );");
         db.execSQL("CREATE TABLE IF NOT EXISTS money(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR ,date VARCHAR, notes VARCHAR, months VARCHAR);");
-        Toast.makeText(this,"Database Created",Toast.LENGTH_SHORT).show();
     }
 
-    protected void insertIntoDatabase(){
-        int tmp=0;
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"January"+"' , '"+tmp+"')");
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"February"+"', '"+tmp+"')");
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"March"+"' , '"+tmp+"')");
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"April"+"' , '"+tmp+"')");
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"May"+"' , '"+tmp+"')");
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"June"+"' , '"+tmp+"')");
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"July"+"' , '"+tmp+"')");
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"August"+"' , '"+tmp+"')");
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"September"+"' , '"+tmp+"')");
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"October"+"' , '"+tmp+"')");
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"Novemebr"+"' , '"+tmp+"')");
-        db2.execSQL("INSERT INTO monthtotal (monthName,total) VALUES ('"+"December"+"' , '"+tmp+"')");
-
-        //ContentValues contentValues=new ContentValues();
-
-        Toast.makeText(this,"Second DB created",Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,5 +69,22 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == Dist){
+            Intent intent=new Intent(MainActivity.this,Distribution.class);
+            startActivity(intent);
+        }
+        if (view == Total){
+            Intent intent=new Intent(MainActivity.this,TotalSum.class);
+            startActivity(intent);
+        }
+        if (view == Main){
+            Intent intent=new Intent(MainActivity.this,Overview.class);
+            startActivity(intent);
+        }
+
     }
 }
