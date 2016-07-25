@@ -25,7 +25,7 @@ public class TotalSum extends AppCompatActivity {
         db=openOrCreateDatabase("MoneyDB", Context.MODE_PRIVATE,null);
         c=db.rawQuery("SELECT SUM(name) FROM money",null);
 
-        String Mname="04";
+        int Mname=4;
         c2=db.rawQuery("SELECT SUM(name) FROM money WHERE months="+Mname,null);
         String i=getSum();
         String i2=getAprilSum();
@@ -44,7 +44,7 @@ public class TotalSum extends AppCompatActivity {
     }
 
     protected String getAprilSum(){
-        if(c.moveToFirst() && c!=null){
+        if(c2.moveToFirst()){
             return String.valueOf(c2.getInt(0));
         }
         return "0";
