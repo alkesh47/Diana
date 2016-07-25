@@ -121,6 +121,7 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         String notes=Notes.getText().toString().trim();
         String tmp= Date.getText().toString().trim();
         String month = tmp.substring(3,5).toString();
+        Toast.makeText(this,month,Toast.LENGTH_SHORT).show();
         int tmp1 = Integer.parseInt(month);
 
 
