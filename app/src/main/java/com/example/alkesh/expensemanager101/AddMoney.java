@@ -2,7 +2,6 @@ package com.example.alkesh.expensemanager101;
 
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,7 +26,6 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
     Button Save,Cancel;
     EditText expText,Notes;
     TextView Date;
-    int id;
 
     private SQLiteDatabase db;
 
@@ -39,7 +37,7 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_money);
 
-        Date=(TextView)findViewById(R.id.dateEditText);
+        Date=(TextView)findViewById(R.id.dateTextView);
 
         Notes=(EditText)findViewById(R.id.notesEditText);
         expText=(EditText)findViewById(R.id.expense);
@@ -94,9 +92,6 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
 
         if(view== Save){
             insertIntoDatabase();
-            Intent intent= new Intent(AddMoney.this,Overview.class);
-            startActivity(intent);
-            finish();
         }
 
         if(view==Cancel){
@@ -114,75 +109,34 @@ public class AddMoney extends AppCompatActivity implements View.OnClickListener{
         String amount = expText.getText().toString().trim();
         String date=Date.getText().toString().trim();
         String notes=Notes.getText().toString().trim();
-        String tmp= Date.getText().toString().trim();
-        String month = tmp.substring(3,5).toString();
-        Toast.makeText(this,month,Toast.LENGTH_SHORT).show();
-        int tmp1 = Integer.parseInt(month);
+
 
 
         if(amount.equals("") || date.equals("")){
-            Toast.makeText(this,"Please enter the necessary fields or press Cancel to go back",Toast.LENGTH_SHORT).show();
-            return;
+            Toast.makeText(this,"Please enter all fields!!",Toast.LENGTH_SHORT).show();
+
+            if(amount.equals("")){
+                expText.setError("Enter Amount");
+            }
+
+            else if(date.equals("")){
+                Date.setError("Enter Date");
+            }
+
+
         }
 
-        String query="INSERT INTO money (name,date,notes,months) VALUES('"+amount+"' , '"+date+"' , '"+notes+"' , '"+month+"');";
-        db.execSQL(query);
-
-        /*ContentValues contentValues=new ContentValues();
-        AddMoney k = new AddMoney();
-        id=k.FindMonthString(tmp1);
-        int tmp2=Integer.parseInt(amount);
-
-        String strFilter = "id=" + id;
-        contentValues.put("total", tmp2);
-        db2.update("monthtotal", contentValues, strFilter, null);*/
-
-        Toast.makeText(getApplicationContext(),"Expense details Saved",Toast.LENGTH_LONG).show();
+        else {
+            String tmp= Date.getText().toString().trim();
+            String month = tmp.substring(3,5).toString();
+            String query = "INSERT INTO money (name,date,notes,months) VALUES('" + amount + "' , '" + date + "' , '" + notes + "' , '" + month + "');";
+            db.execSQL(query);
+            Toast.makeText(getApplicationContext(), "Expense details Saved", Toast.LENGTH_LONG).show();
+            Intent intent= new Intent(AddMoney.this,Overview.class);
+            startActivity(intent);
+            finish();
+        }
     }
-
-    /*protected int FindMonthString(int tmp1){
-        int id1=0;
-        switch (tmp1){
-            case 1:
-                id1 = 1;
-                break;
-            case 2:
-                id1 = 2;
-                break;
-            case 3:
-                id1 = 3;
-                break;
-            case 4:
-                id1 = 4;
-                break;
-            case 5:
-                id1 = 5;
-                break;
-            case 6:
-                id1 = 6;
-                break;
-            case 7:
-                id1 = 7;
-                break;
-            case 8:
-                id1 = 8;
-                break;
-            case 9:
-                id1 = 9;
-                break;
-            case 10:
-                id1 = 10;
-                break;
-            case 11:
-                id1 = 11;
-                break;
-            case 12:
-                id1 = 12;
-                break;
-        }
-        return id1;
-    }*/
-
 }
 
 

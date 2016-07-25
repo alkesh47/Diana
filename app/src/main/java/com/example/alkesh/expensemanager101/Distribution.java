@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class Distribution extends AppCompatActivity {
 
     SQLiteDatabase db;
-    Cursor c1,c2,c3,c4;
+    Cursor c4;
     String mname="01";
     int c=0;
     @Override

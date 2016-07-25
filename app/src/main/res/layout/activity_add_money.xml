@@ -40,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:text=""
         android:hint="Enter Expense"
         android:ems="10"
         android:id="@+id/expense"
@@ -171,7 +172,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:hint="Pick Date"
-        android:id="@+id/dateEditText"
+        android:text=""
+        android:imeOptions="actionDone"
+        android:id="@+id/dateTextView"
         android:layout_above="@+id/notesEditText"
         android:layout_toEndOf="@+id/textView7"
         android:layout_marginStart="21dp" />
@@ -181,7 +184,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/notesEditText"
         android:layout_below="@+id/datePickerTextView"
-        android:layout_alignStart="@+id/dateEditText"
+        android:layout_alignStart="@+id/dateTextView"
         android:layout_alignEnd="@+id/radioGroup" />
 
 
